@@ -1,0 +1,43 @@
+{
+  "name": "btcxreddit",
+  "version": "0.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "axios": "0.17.1",
+    "blueimp-md5": "2.10.0",
+    "echarts": "4.0.2",
+    "echarts-for-react": "2.0.6",
+    "history": "4.7.2",
+    "material-ui": "0.20.0",
+    "material-ui-scrolling-techniques": "0.2.0",
+    "mobile-detect": "1.4.1",
+    "react": "^16.2.0",
+    "react-animated-number": "0.4.4",
+    "react-chat-ui": "0.3.0",
+    "react-dom": "^16.2.0",
+    "react-ga": "2.4.1",
+    "react-motion": "0.5.2",
+    "react-redux": "5.0.6",
+    "react-router-dom": "4.2.2",
+    "react-scripts": "1.1.0",
+    "reconnecting-websocket": "3.2.2",
+    "redux": "3.7.2",
+    "redux-immutable-state-invariant": "2.1.0",
+    "redux-thunk": "2.2.0",
+    "safe-access": "0.1.0",
+    "underscore": "1.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "postbuild": "rimraf build/**/*.map"
+  },
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "eslint": "4.17.0",
+    "eslint-plugin-react": "7.6.1"
+  }
+}

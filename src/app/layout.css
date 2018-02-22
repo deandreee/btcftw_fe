@@ -1,0 +1,31 @@
+.modal {
+    /*display: none;*/
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal.open {
+   display: block;
+}
+
+.modal__header,
+.modal__footer {
+    height: 56px;
+}
+.modal__content,
+.modal__footer {
+    position: absolute;
+    width: 100%;
+}
+.modal__content {
+    bottom: 56px;
+    top: 56px;
+    overflow-y: auto;
+}
+.modal__footer {
+  /*bottom: 0;*/
+  bottom: 10px;
+}
