@@ -31,11 +31,11 @@ class BottomPrices extends Component {
           { priceNow && price1h && <PriceCompare text={'1h'} priceNow={priceNow} priceComp={price1h} /> }
           { priceNow && pricePrev && <PriceCompare text={'now'} priceNow={priceNow} priceComp={pricePrev} showNow={true} /> }
 
-          {/* DEBUG: */}
+          {/* DEBUG:
           <BottomNavigationItem
             label={<span>ws: {this.props.ws.status}</span>}
             icon={<span style={{ color: 'red' }}>{this.props.ws.errorMsg}</span>}
-          />
+          /> */}
 
         </BottomNavigation>
       </Paper>

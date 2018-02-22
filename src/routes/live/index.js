@@ -51,16 +51,12 @@ class Live extends React.Component {
   }
 
   onClick = (e) => {
-    // e.preventDefault();
-    // e.stopPropagation();
 
-    this.props.dispatch(liveActions.onComment({ body: 'hello', permalink: Date.now() + '', author: 'whatever' }));
+    // DEBUG: 
+    // this.props.dispatch(liveActions.onComment({ body: 'hello', permalink: Date.now() + '', author: 'whatever' }));
+    // let price = { ts: Date.now(), value: Math.round(Math.random() * 1000 * 100) / 100 };
+    // this.props.dispatch(liveActions.onCurrentPriceChange(price));
 
-    let price = { ts: Date.now(), value: Math.round(Math.random() * 1000 * 100) / 100 };
-    this.props.dispatch(liveActions.onCurrentPriceChange(price));
-    // setTimeout(() => {
-    //   this.props.dispatch(liveActions.onCurrentPriceChangeEnd(price));
-    // }, 1000);
   }
 
   // renderCount = 0;
