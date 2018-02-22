@@ -44,6 +44,7 @@ class Live extends React.Component {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
+    // jus testin
     let res = shallowCompare(this, nextProps, nextState);
     console.log('Live: shouldComponentUpdate', res);
     return res;
