@@ -8,7 +8,7 @@ export default class MotionSequence extends Component {
 
     let sequenceId = 0;
 
-    console.log(this.props.styles[0]);
+    // console.log(this.props.styles[0]);
     let defaultStyle = this.props.defaultStyle;
     if (!defaultStyle) {
       defaultStyle = {};

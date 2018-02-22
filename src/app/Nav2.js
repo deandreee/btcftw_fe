@@ -33,9 +33,9 @@ class TabsExampleSimple extends React.Component {
     return (
       <div>
       <Tabs value={this.state.selected}>
-        <Tab label="BTC 1m" style={text} value="/btc" onActive={this.handleActive} />
+        <Tab label="BTC 1mo" style={text} value="/btc" onActive={this.handleActive} />
         <Tab label="BTC 24h" style={text} value="/btc24" onActive={this.handleActive} />
-        <Tab label="ETH" style={text} value="/eth" onActive={this.handleActive} />
+        <Tab label="ETH 1mo" style={text} value="/eth" onActive={this.handleActive} />
         <Tab label={badge} style={text} value="/live" onActive={this.handleActive} />
       </Tabs>
       </div>

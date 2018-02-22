@@ -1,5 +1,6 @@
 import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
+import ms from 'ms';
 
 let initialState = {
   comments: [],
@@ -57,11 +58,17 @@ export default createReducer(initialState, {
     let { btc } = action;
 
     let price24h = btc.Data[0]; // since we take 24h, this should be it
-    let price1h = btc.Data.find(x => x.time * 1000 > Date.now() - 1000 * 60 * 60); // since we take 24h, this should be it
-    let pricePrev = btc.Data.find(x => x.time * 1000 > Date.now() - 1000 * 60 * 5); // let's take 5 min for this
-    let priceNow = btc.Data[btc.Data.length - 1]
+    let price1h = btc.Data.find(x => x.time * 1000 > Date.now() - ms('5h'));
+    // let pricePrev = btc.Data.find(x => x.time * 1000 > Date.now() - 1000 * 60 * 5); // let's take 5 min for this
+    let pricePrev = btc.Data[btc.Data.length - 2];
+    let priceNow = btc.Data[btc.Data.length - 1];
 
-    console.log('price24h', price24h.close, price1h.close, pricePrev.close, priceNow.close);
+    // console.log(`BTC24/loadBtc24h/SUCCESS |
+    //   price24h ${price24h && price24h.close} |
+    //   price1h ${price1h && price1h.close} |
+    //   pricePrev ${pricePrev && pricePrev.close} |
+    //   priceNow ${priceNow && priceNow.close}
+    // `);
 
     return { ...state, priceNow, pricePrev, price24h, price1h };
   }

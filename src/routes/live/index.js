@@ -27,6 +27,7 @@ import ReactGA from 'react-ga';
 // https://github.com/chenglou/react-motion#transitionmotion-
 // https://github.com/chenglou/react-motion/blob/master/demos/demo3-todomvc-list-transition/Demo.jsx => best actual list example I could find
 import { TransitionMotion, spring, presets, Motion } from 'react-motion';
+import * as animations from './animations';
 
 class Live extends React.Component {
 
@@ -44,50 +45,15 @@ class Live extends React.Component {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    // jus testin
     let res = shallowCompare(this, nextProps, nextState);
-    console.log('Live: shouldComponentUpdate', res);
+    // console.log('Live: shouldComponentUpdate', res);
     return res;
   }
 
-  willEnter() {
-    return {
-      // height: spring(80, presets.gentle),
-      // height: spring(0, presets.wobbly),
-      height: 0,
-      opacity: 1,
-    };
-  };
+  onClick = (e) => {
+    // e.preventDefault();
+    // e.stopPropagation();
 
-  willLeave() {
-    return {
-      // height: spring(0),
-      opacity: spring(0),
-    };
-  };
-
-
-  getDefaultStyles = () => {
-    return this.props.comments.map(c => ({ key: c.permalink, data: c, style: { height: 80, opacity: 1 }}));
-  };
-
-  getStyles = () => {
-    const { comments } = this.props;
-    return comments.map((c, i) => {
-      return {
-        key: c.permalink,
-        data: c,
-        style: {
-          height: spring(88, presets.wobbly),
-          // height: 80,
-          opacity: spring(1, presets.wobbly),
-          // opacity: 1,
-        }
-      };
-    });
-  };
-
-  onClick = () => {
     this.props.dispatch(liveActions.onComment({ body: 'hello', permalink: Date.now() + '', author: 'whatever' }));
 
     let price = { ts: Date.now(), value: Math.round(Math.random() * 1000 * 100) / 100 };
@@ -107,12 +73,14 @@ class Live extends React.Component {
     };
 
     // console.log('live render ', this.renderCount++);
-
-    let defaultStyles = this.getDefaultStyles();
-    let styles = this.getStyles();
     let listStyle = { padding: '0px' };
     let paperStyle = { maxHeight: window.height, overflow: 'auto' };
     {/* style={{ position: 'fixed', top: '100px', maxHeight: '100%' }} */}
+
+    let { comments } = this.props;
+    let { getDefaultStyles, getStyles, willLeave, willEnter } = animations;
+    let defaultStyles = getDefaultStyles(comments);
+    let styles = getStyles(comments);
 
     return (
       <div>
@@ -124,7 +92,7 @@ class Live extends React.Component {
           {/* <div style={{ width: '30%' }}> */}
           <div>
 
-            <Paper style={paperStyle}>
+            {/* <Paper style={paperStyle}> */}
 
               {/* <MotionSequence styles={[
                 { height: 0 },
@@ -138,9 +106,9 @@ class Live extends React.Component {
               {/* <Price /> */}
 
               {/* <TransitionMotion
-                styles={this.getDefaultStyles()}
-                willLeave={this.willLeave}
-                willEnter={this.willEnter}>
+                styles={getDefaultStyles(comments)}
+                willLeave={willLeave}
+                willEnter={willEnter}>
 
                 <List style={{ padding: '0px' }}>
                   {this.props.comments.map((x, i) => {
@@ -174,10 +142,12 @@ class Live extends React.Component {
             })}
             </List>*/}
 
+
             {/**/}
             <TransitionMotion
-              willLeave={this.willLeave}
-              willEnter={this.willEnter}
+              willLeave={willLeave}
+              willEnter={willEnter}
+              defaultStyles={defaultStyles}
               styles={styles}
             >
               {interpolatedStyles =>
@@ -197,7 +167,7 @@ class Live extends React.Component {
             </TransitionMotion>
 
 
-          </Paper>
+          {/* </Paper> */}
 
             {/* <ChatFeed
               messages={this.props.comments}

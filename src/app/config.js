@@ -8,14 +8,18 @@ const isLocalhost = Boolean(
     )
 );
 
-let wsPrefix = isLocalhost ? 'ws' : 'wss';
+const isVlan = Boolean(
+  window.location.hostname.startsWith('192.168')
+);
+
+let wsPrefix = isLocalhost || isVlan ? 'ws' : 'wss';
 
 module.exports = {
   port: 3000,
   wsUrl: `${wsPrefix}://${window.location.hostname}:3001`,
   isLocalhost,
   env: {
-    NODE_ENV: isLocalhost ? 'development' : 'production'
+    NODE_ENV: isLocalhost || isVlan ? 'development' : 'production'
   },
-  trackingId: isLocalhost ? 'UA-103323219-3' : 'UA-103323219-2'
+  trackingId: isLocalhost || isVlan ? 'UA-103323219-3' : 'UA-103323219-2'
 }

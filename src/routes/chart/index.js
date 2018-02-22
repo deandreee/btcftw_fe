@@ -8,8 +8,13 @@ import * as ws from 'routes/live/ws';
 import ReactGA from 'react-ga';
 import shallowCompare from 'app/shallowCompare';
 import access from 'safe-access';
+import styles from 'app/styles';
 
 class Chart extends React.Component {
+
+  state = {
+    isLoading: true
+  }
 
   componentWillMount = async () => {
 
@@ -27,6 +32,8 @@ class Chart extends React.Component {
     ]);
 
     await this.massMerge();
+
+    this.setState({ isLoading: false });
 
     // await this.props.dispatch(chartActions.loadTicker());
     // console.log('data after loadTicker', this.props.chart.options.series[0]);
@@ -128,7 +135,7 @@ class Chart extends React.Component {
       let y = this.getY(data, post);
       let x = post.date;
 
-      console.log('added', post.title, new Date(x), dateBeforeIndex);
+      // console.log('added', post.title, new Date(x), dateBeforeIndex);
 
       this.props.dispatch(chartActions.addPost(x, y, post, dateBeforeIndex));
     }
@@ -195,6 +202,8 @@ class Chart extends React.Component {
             lazyUpdate={true}
             theme={"dark"}
             onEvents={{ click: this.click }}
+            showLoading={this.state.isLoading}
+            loadingOption={{ color: styles.colors.primary, maskColor: styles.colors.background }}
           />
 
       </div>

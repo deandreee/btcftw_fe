@@ -78,14 +78,14 @@ export default createReducer(initialState, {
   'BTC24/loadBtc24h/SUCCESS'(state, action) {
     let { btc } = action;
 
-    let { min, max } = chartUtils.getMinMax(btc.Data.map(x => x.close));
+    let { min, max } = chartUtils.getMinMax(btc.Data.map(x => x && x.close));
 
     return { ...state, btc,
       // isBtc24Loaded: true,
       options: { ...state.options,
         yAxis: { ...state.options.yAxis, min, max },
         series: [{
-        ...state.options.series[0], data: btc.Data.map(x => [ x.time * 1000, x.close ]) }, {
+        ...state.options.series[0], data: btc.Data.map(x => x && [ x.time * 1000, x.close ]) }, {
           ...state.options.series[1]
     }]}};
   },

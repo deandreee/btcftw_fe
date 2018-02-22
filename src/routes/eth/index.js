@@ -6,10 +6,15 @@ import * as actions from './dux';
 import * as appActions from 'app/dux';
 import bluebird from 'bluebird';
 import ReactGA from 'react-ga';
+import styles from 'app/styles';
 
 class ChartEth extends React.Component {
 
-  componentWillMount = () => {
+  state = {
+    isLoading: true
+  }
+
+  componentWillMount = async() => {
 
     ReactGA.event({
       category: 'eth',
@@ -18,12 +23,14 @@ class ChartEth extends React.Component {
 
     // this.props.dispatch(appActions.log('ui/eth: componentWillMount'));
 
-    bluebird.all([
+    await bluebird.all([
       this.props.dispatch(actions.loadEth()),
       this.props.dispatch(actions.loadReddit())
-    ]).then(() => {
-      this.massMerge();
-    });
+    ]);
+
+    await this.massMerge();
+
+    this.setState({ isLoading: false });
   }
 
   getDateBeforeIndex = (data, post) => {
@@ -149,7 +156,7 @@ class ChartEth extends React.Component {
   render() {
     return (
       <div style={{ }}>
-        
+
           {/* <h1 style={{ fontFamily: `'Saira', sans-serif`, textAlign: 'center', color: 'rgb(78,142,233)', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
             Ethereum vs Reddit Events
           </h1> */}
@@ -161,6 +168,8 @@ class ChartEth extends React.Component {
             lazyUpdate={true}
             theme={"dark"}
             onEvents={{ click: this.click }}
+            showLoading={this.state.isLoading}
+            loadingOption={{ color: styles.colors.primary, maskColor: styles.colors.background }}
           />
 
       </div>

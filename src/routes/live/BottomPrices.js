@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import styles from 'app/styles';
 import PriceCompare from './PriceCompare';
+import ws from 'routes/live/ws';
 
 class BottomPrices extends Component {
 
@@ -20,7 +21,7 @@ class BottomPrices extends Component {
 
     let { pricePrev, priceNow, price24h, price1h } = this.props;
 
-    console.log(`DiffLabel comp: ${pricePrev && pricePrev.close} | now: ${priceNow && priceNow.close}`);
+    // console.log(`DiffLabel comp: ${pricePrev && pricePrev.close} | now: ${priceNow && priceNow.close}`);
 
     return (
       <Paper zDepth={0} style={this.state.style}>
@@ -30,10 +31,19 @@ class BottomPrices extends Component {
           { priceNow && price1h && <PriceCompare text={'1h'} priceNow={priceNow} priceComp={price1h} /> }
           { priceNow && pricePrev && <PriceCompare text={'now'} priceNow={priceNow} priceComp={pricePrev} showNow={true} /> }
 
+          {/* DEBUG: */}
+          <BottomNavigationItem
+            label={<span>ws: {this.props.ws.status}</span>}
+            icon={<span style={{ color: 'red' }}>{this.props.ws.errorMsg}</span>}
+          />
+
         </BottomNavigation>
       </Paper>
     );
   }
 }
 
-export default connect(state => state.live)(BottomPrices);
+export default connect(state => ({
+  ...state.live,
+  ws: state.ws
+}))(BottomPrices);

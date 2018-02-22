@@ -6,6 +6,15 @@ import md5 from 'blueimp-md5';
 import styles from 'app/styles';
 import shallowCompare from 'app/shallowCompare';
 
+let lines2 = {
+  display: 'block',
+  textOverflow: 'ellipsis',
+  wordWrap: 'break-word',
+  overflow: 'hidden',
+  maxHeight: '32px',
+  lineHeight: '16px'
+}
+
 export default class Item extends React.PureComponent {
 
   // shouldComponentUpdate = (nextProps, nextState) => {
@@ -17,7 +26,7 @@ export default class Item extends React.PureComponent {
 
   render() {
 
-    console.log('Item: render');
+    // console.log('Item: render');
 
     let { comment, onClick } = this.props;
 
@@ -31,7 +40,7 @@ export default class Item extends React.PureComponent {
         <ListItem style={{ fontFamily: `'Saira', sans-serif`, backgroundColor: styles.colors.background }}
           leftAvatar={<Avatar src={imgSrc} />}
           primaryText={
-            <span>
+            <span style={lines2}>
               {comment.author} ({timeDisplay}) @
               <a href={ 'https://reddit.com/' + comment.permalink } style={{ color: 'lightblue' }} target='_blank'>  {comment.link_title}</a>
             </span>
@@ -43,6 +52,8 @@ export default class Item extends React.PureComponent {
           }
           secondaryTextLines={2}
           onClick={onClick}
+          disableTouchRipple={true}
+          disableFocusRipple={true}
         />
 
     );
