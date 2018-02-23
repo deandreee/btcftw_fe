@@ -13,10 +13,11 @@ const isVlan = Boolean(
 );
 
 let wsPrefix = isLocalhost || isVlan ? 'ws' : 'wss';
+let wsPort = isLocalhost || isVlan ? '3001' : '443';
 
 module.exports = {
   port: 3000,
-  wsUrl: `${wsPrefix}://${window.location.hostname}:3001`,
+  wsUrl: `${wsPrefix}://${window.location.hostname}:${wsPort}`,
   isLocalhost,
   env: {
     NODE_ENV: isLocalhost || isVlan ? 'development' : 'production'
