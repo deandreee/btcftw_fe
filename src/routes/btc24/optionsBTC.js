@@ -142,7 +142,7 @@ export default {
         //     },
     }
     ,{
-      symbolSize: 12,
+      symbolSize: 15,
 
       // maybe later, too big difference
       // symbolSize: function (data) {
@@ -153,8 +153,8 @@ export default {
 
       data: [],
       // color: 'rgb(37, 140, 249)',
-      color: styles.colors.primary,
-      // color: 'gold',
+      // color: styles.colors.primary,
+      color: 'gold',
       // color: 'orange',
       type: 'scatter'
     }
