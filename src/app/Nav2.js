@@ -37,6 +37,8 @@ class TabsExampleSimple extends React.Component {
         <Tab label="BTC 24h" style={text} value="/btc24" onActive={this.handleActive} />
         <Tab label="ETH 1mo" style={text} value="/eth" onActive={this.handleActive} />
         <Tab label={badge} style={text} value="/live" onActive={this.handleActive} />
+        <Tab label="Soc" style={text} value="/soc" onActive={this.handleActive} />
+        
       </Tabs>
       </div>
     );

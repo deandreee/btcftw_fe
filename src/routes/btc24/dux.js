@@ -2,6 +2,7 @@ import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
 import options from './optionsBTC';
 import * as chartUtils from './chartUtils';
+import ms from 'ms';
 
 let initialState = {
   posts: [],
@@ -78,14 +79,16 @@ export default createReducer(initialState, {
   'BTC24/loadBtc24h/SUCCESS'(state, action) {
     let { btc } = action;
 
-    let { min, max } = chartUtils.getMinMax(btc.Data.map(x => x && x.close));
+    let indexToday = btc.Data.findIndex(x => x.time * 1000 >= Date.now() - ms('24h'));
+    let dataToday = btc.Data.slice(indexToday);
+    let { min, max } = chartUtils.getMinMax(dataToday.map(x => x && x.close));
 
     return { ...state, btc,
       // isBtc24Loaded: true,
       options: { ...state.options,
         yAxis: { ...state.options.yAxis, min, max },
         series: [{
-        ...state.options.series[0], data: btc.Data.map(x => x && [ x.time * 1000, x.close ]) }, {
+        ...state.options.series[0], data: dataToday.map(x => x && [ x.time * 1000, x.close ]) }, {
           ...state.options.series[1]
     }]}};
   },
