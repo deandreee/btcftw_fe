@@ -21,7 +21,7 @@ export function loadSocStats() {
 export default createReducer(initialState, {
 
   'SOC/loadSocStats/SUCCESS'(state, action) {
-    let { stats, series } = action;
+    let { stats, series, subList } = action;
 
     let min = Math.min(...stats.map(x => x && x.posts_count));
     let max = Math.max(...stats.map(x => x && x.posts_count));
@@ -35,9 +35,14 @@ export default createReducer(initialState, {
     //     ...state.options.series[1]
     // }]}
 
+    // let legend = { ...state.options.legend, data: subList.map(x => ({ name: x.sub})) };
+    let legend = { ...state.options.legend, data: subList.map(x => x.sub) };
+    let selected = legend.data.slice(0, 5);
+
     let options = { ...state.options,
       yAxis: { ...state.options.yAxis, min, max },
-      series: series.map(x => ({ type: 'line',
+      legend,
+      series: series.map(x => ({ type: 'line', name: x[0].subName,
         data: x.map(y => ([ new Date(y.ts).getTime(), y.posts_count ]))
       }))
     }

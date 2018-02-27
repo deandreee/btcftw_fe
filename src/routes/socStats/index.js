@@ -10,6 +10,7 @@ import ReactGA from 'react-ga';
 import shallowCompare from 'app/shallowCompare';
 import styles from 'app/styles';
 import access from 'safe-access';
+import 'echarts/lib/component/legendScroll';
 
 class SocStats extends React.Component {
 
@@ -28,7 +29,7 @@ class SocStats extends React.Component {
     // ws.connect(this.props.dispatch);
 
     await this.props.dispatch(socActions.loadSocStats());
-    
+
 
     this.setState({ isLoading: false });
 

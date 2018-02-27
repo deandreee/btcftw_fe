@@ -28,6 +28,8 @@ import {
 // import AppBar, { FlexibleSpace, TabBar, ToolBar } from 'material-ui-scrolling-techniques/src/AppBar';
 
 import BottomPrices from 'routes/live/BottomPrices';
+import SocStats from 'routes/socStats';
+
 import './layout.css';
 
 const history = createHistory()
@@ -91,6 +93,7 @@ class App extends Component {
                     <Route path="/eth" component={ChartEth}/>
                     <Route path="/live" component={Live}/>
                     <Route path="/btc24" component={BTC24}/>
+                    <Route path="/soc" component={SocStats}/>
                     <Redirect from="/" to="/btc" />
                   </Switch>
                 </div>
