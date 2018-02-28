@@ -26,6 +26,10 @@ export default createReducer(initialState, {
     let min = Math.min(...stats.map(x => x && x.comments_count));
     let max = Math.max(...stats.map(x => x && x.comments_count));
 
+    let dates = stats.map(x => x && x.ts).sort((a, b) => a - b); // asc
+    let firstDate =  dates[0];
+    let axisPointerValue = dates.find(x => x > firstDate); // choose second for better ui understanding
+
     // let { min, max } = chartUtils.getMinMax(stats.map(x => x && x.posts_count));
 
     // let options = { ...state.options,
@@ -42,6 +46,7 @@ export default createReducer(initialState, {
     let options = { ...state.options,
       yAxis: { ...state.options.yAxis, min, max },
       legend,
+      xAxis: { ...state.options.xAxis, axisPointer: { ...state.options.xAxis.axisPointer, value: axisPointerValue }},
       series: series.map(x => ({ type: 'line', name: x[0].subName, symbolSize: 10,
         data: x.map(y => ([ new Date(y.ts).getTime(), y.comments_count ]))
       }))

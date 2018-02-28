@@ -9,3 +9,9 @@ export function getMinMax(values) {
 
   return { min, max };
 };
+
+export function formatDateShort(value) {
+  let months = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ];
+  let date = new Date(value);
+  return date.getDate() + ' ' + months[date.getMonth()];
+};

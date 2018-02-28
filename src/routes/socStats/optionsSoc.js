@@ -2,6 +2,7 @@
 import splitter from '../btc24/splitter';
 import styles from 'app/styles';
 import MobileDetect from 'mobile-detect';
+import * as chartUtils from 'routes/btc24/chartUtils';
 let md = new MobileDetect(window.navigator.userAgent);
 
 export default {
@@ -9,18 +10,22 @@ export default {
 
   grid: {
     left: '50px',
-    right: '140px',
-    top: '30px'
+    // right: '140px', // with vert legend right
+    right: '10px',
+    top: '10px',
+    // bottom: '100px'
+    // height: 'auto'
   },
 
   legend: {
-    type: 'scroll',
-    orient: 'vertical',
+    type: 'plain', // 'scroll',
+    orient: 'horizontal',
     textStyle: { color: styles.colors.primary, fontFamily: styles.fontFamily },
-    right: 10,
-    top: 20,
-    bottom: 20,
-    width: 100,
+    left: 30,
+    // top: 20,
+    bottom: 0,
+    // width: 1000,
+    height: 200,
     data: [ ]
   },
 
@@ -30,10 +35,16 @@ export default {
 
     xAxis: {
       type: 'time',
-
-      axisLabel: { color: styles.colors.primary, fontFamily: styles.fontFamily },
+      // splitLine: { lineStyle: { color: 'white' }},
+      axisLabel: {
+        color: styles.colors.primary,
+        fontFamily: styles.fontFamily,
+        formatter: function (value, index) {
+          return chartUtils.formatDateShort(value);
+        },
+      },
       axisPointer: {
-            value: '2016-10-7',
+            // value: '2016-10-7',
             snap: true,
             type: 'line',
             lineStyle: {
@@ -55,6 +66,7 @@ export default {
                 // color: '#004E52'
             }
         },
+
     },
 
     yAxis: {
