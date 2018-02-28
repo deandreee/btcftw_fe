@@ -5,6 +5,7 @@ import Avatar from 'material-ui/Avatar';
 import md5 from 'blueimp-md5';
 import styles from 'app/styles';
 import shallowCompare from 'app/shallowCompare';
+import ReactGA from 'react-ga';
 
 let lines2 = {
   display: 'block',
@@ -24,6 +25,13 @@ export default class Item extends React.PureComponent {
     // return res;
   // }
 
+  onClick = () => {
+    ReactGA.event({
+      category: 'live',
+      action: 'open-reddit'
+    });
+  }
+
   render() {
 
     // console.log('Item: render');
@@ -37,12 +45,12 @@ export default class Item extends React.PureComponent {
 
     return (
 
-        <ListItem style={{ fontFamily: `'Saira', sans-serif`, backgroundColor: styles.colors.background }}
+        <ListItem style={{ fontFamily: styles.fontFamily, backgroundColor: styles.colors.background }}
           leftAvatar={<Avatar src={imgSrc} />}
           primaryText={
             <span style={lines2}>
               {comment.author} ({timeDisplay}) @
-              <a href={ 'https://reddit.com/' + comment.permalink } style={{ color: 'lightblue' }} target='_blank'>  {comment.link_title}</a>
+              <a href={ 'https://reddit.com/' + comment.permalink } style={{ color: 'lightblue' }} target='_blank' onClick={this.onClick}>  {comment.link_title}</a>
             </span>
           }
           secondaryText={

@@ -28,7 +28,7 @@ class TabsExampleSimple extends React.Component {
 
     {/* style={{position: "fixed", top: "0px", width:"100%", height: '50px' }} */}
 
-    let badge = <Badge badgeContent={this.props.comments.length} secondary={true} badgeStyle={{ top: 12, right: 0 }}>LIVE</Badge>
+    let badge = <Badge badgeContent={this.props.comments.length} secondary={true} badgeStyle={{ backgroundColor: styles.colors.primary, top: 12, right: 0 }}>LIVE</Badge>
 
     return (
       <div>
@@ -38,7 +38,7 @@ class TabsExampleSimple extends React.Component {
         <Tab label="ETH 1mo" style={text} value="/eth" onActive={this.handleActive} />
         <Tab label={badge} style={text} value="/live" onActive={this.handleActive} />
         <Tab label="Soc" style={text} value="/soc" onActive={this.handleActive} />
-        
+
       </Tabs>
       </div>
     );

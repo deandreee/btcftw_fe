@@ -1,19 +1,20 @@
 // import btc from './btc';
 import splitter from 'routes/chart/splitter';
 import optionsBTC from 'routes/chart/optionsBTC';
+import styles from 'app/styles';
 
 export default { ...optionsBTC,
 
   xAxis: {
     type: 'time',
-    axisLabel: { color: 'rgb(78,142,233)', fontFamily: `'Saira', sans-serif` }
+    axisLabel: { color: 'rgb(78,142,233)', fontFamily: styles.fontFamily }
   },
   yAxis: {
     min: 500,
     max: 1500,
     axisLabel: {
       color: 'rgb(78,142,233)',
-      fontFamily: `'Saira', sans-serif`,
+      fontFamily: styles.fontFamily,
       formatter: function (value, index) {
         return Math.round(value / 100) / 10 + 'k';
       }

@@ -31,6 +31,7 @@ import BottomPrices from 'routes/live/BottomPrices';
 import SocStats from 'routes/socStats';
 
 import './layout.css';
+import styles from 'app/styles';
 
 const history = createHistory()
 history.listen((location, action) => {
@@ -72,12 +73,16 @@ class App extends Component {
     }
   }
 
+  theme = getMuiTheme({ ...darkBaseTheme,
+    palette: { ...darkBaseTheme.palette, accent1Color: styles.colors.primary, }
+  });
+
   render() {
 
     return (
       <div className="App">
         <Router history={history}>
-          <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+          <MuiThemeProvider muiTheme={this.theme}>
             <div>
 
               <div className="modal">

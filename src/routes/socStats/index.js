@@ -11,6 +11,7 @@ import shallowCompare from 'app/shallowCompare';
 import styles from 'app/styles';
 import access from 'safe-access';
 import 'echarts/lib/component/legendScroll';
+import * as utilsObj from 'utils/obj';
 
 class SocStats extends React.Component {
 
@@ -36,9 +37,12 @@ class SocStats extends React.Component {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
-    return shallowCompare(this, nextProps, nextState);
-    // console.log('btc24: shouldComponentUpdate', res);
-    // return res;
+    // TODO: need to think here about which props to compare
+    let propsToCompare = ['stats', 'options', ];
+    let component = { props: utilsObj.pick(this.props, propsToCompare), state: this.state }
+    let res = shallowCompare(component, utilsObj.pick(nextProps, propsToCompare), nextState);
+    console.log('socStats: shouldComponentUpdate', res);
+    return res;
   }
 
   // onEvents (optional, array(string=>function) )
@@ -62,7 +66,7 @@ class SocStats extends React.Component {
     return (
       <div style={{ }}>
 
-          {/* <h1 style={{ fontFamily: `'Saira', sans-serif`, textAlign: 'center', color: 'gold', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
+          {/* <h1 style={{ fontFamily: styles.fontFamily, textAlign: 'center', color: 'gold', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
             Bitcoin vs Reddit Events
           </h1> */}
 

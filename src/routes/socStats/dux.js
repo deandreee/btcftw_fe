@@ -23,8 +23,8 @@ export default createReducer(initialState, {
   'SOC/loadSocStats/SUCCESS'(state, action) {
     let { stats, series, subList } = action;
 
-    let min = Math.min(...stats.map(x => x && x.posts_count));
-    let max = Math.max(...stats.map(x => x && x.posts_count));
+    let min = Math.min(...stats.map(x => x && x.comments_count));
+    let max = Math.max(...stats.map(x => x && x.comments_count));
 
     // let { min, max } = chartUtils.getMinMax(stats.map(x => x && x.posts_count));
 
@@ -42,8 +42,8 @@ export default createReducer(initialState, {
     let options = { ...state.options,
       yAxis: { ...state.options.yAxis, min, max },
       legend,
-      series: series.map(x => ({ type: 'line', name: x[0].subName,
-        data: x.map(y => ([ new Date(y.ts).getTime(), y.posts_count ]))
+      series: series.map(x => ({ type: 'line', name: x[0].subName, symbolSize: 10,
+        data: x.map(y => ([ new Date(y.ts).getTime(), y.comments_count ]))
       }))
     }
 

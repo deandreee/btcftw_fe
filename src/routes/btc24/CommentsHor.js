@@ -15,6 +15,7 @@ import md5 from 'blueimp-md5';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import Paper from 'material-ui/Paper';
+import styles from 'app/styles';
 
 class CommentsHor extends React.Component {
 
@@ -40,7 +41,7 @@ class CommentsHor extends React.Component {
                   let imgSrc = `https://www.gravatar.com/avatar/${hash}?d=identicon`
 
                   return (<div key={`${x.author}_${i}`}>
-                    <ListItem style={{ fontFamily: `'Saira', sans-serif`, minWidth: '300px' }}
+                    <ListItem style={{ fontFamily: styles.fontFamily, minWidth: '300px' }}
                       leftAvatar={<Avatar src={imgSrc} />}
                       primaryText={x.author}
                       secondaryText={

@@ -52,7 +52,7 @@ class Live extends React.Component {
 
   onClick = (e) => {
 
-    // DEBUG: 
+    // DEBUG:
     // this.props.dispatch(liveActions.onComment({ body: 'hello', permalink: Date.now() + '', author: 'whatever' }));
     // let price = { ts: Date.now(), value: Math.round(Math.random() * 1000 * 100) / 100 };
     // this.props.dispatch(liveActions.onCurrentPriceChange(price));
@@ -81,7 +81,7 @@ class Live extends React.Component {
     return (
       <div>
 
-          {/* <h1 style={{ fontFamily: `'Saira', sans-serif`, textAlign: 'center', color: 'gold', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
+          {/* <h1 style={{ fontFamily: styles.fontFamily, textAlign: 'center', color: 'gold', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
             LIVE
           </h1> */}
 
@@ -175,7 +175,7 @@ class Live extends React.Component {
                 {
                   text: {
                     fontSize: 12,
-                    fontFamily: `'Saira', sans-serif`
+                    fontFamily: styles.fontFamily
                   },
                   chatbubble: {
                     borderRadius: 50,

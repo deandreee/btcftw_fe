@@ -157,7 +157,7 @@ class ChartEth extends React.Component {
     return (
       <div style={{ }}>
 
-          {/* <h1 style={{ fontFamily: `'Saira', sans-serif`, textAlign: 'center', color: 'rgb(78,142,233)', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
+          {/* <h1 style={{ fontFamily: styles.fontFamily, textAlign: 'center', color: 'rgb(78,142,233)', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
             Ethereum vs Reddit Events
           </h1> */}
 

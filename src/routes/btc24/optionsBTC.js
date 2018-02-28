@@ -5,7 +5,7 @@ import MobileDetect from 'mobile-detect';
 let md = new MobileDetect(window.navigator.userAgent);
 
 export default {
-  backgroundColor: 'rgb(34,47,53)',
+  backgroundColor: styles.colors.background,
 
   grid: {
     left: '50px',
@@ -30,19 +30,19 @@ export default {
   //   },
 
     // legend: {
-    //   textStyle: { fontFamily: `'Saira', sans-serif`, fontSize: 24 }
+    //   textStyle: { fontFamily: styles.fontFamily, fontSize: 24 }
     // },
     xAxis: {
       type: 'time',
       // min: Date.now() - 1000 * 60 * 60 * 24, // 24h
-      // nameTextStyle: { fontFamily: `'Saira', sans-serif`, fontSize: 24 }
+      // nameTextStyle: { fontFamily: styles.fontFamily, fontSize: 24 }
       // labels: {
       //   textStyle: { fontSize: '25px' },
       //   nameTextStyle: { color: 'red' },
-      //   fontFamily: `'Saira', sans-serif`
+      //   fontFamily: styles.fontFamily
       // },
       // labelTextColor: 'red'
-      axisLabel: { color: 'gold', fontFamily: `'Saira', sans-serif` },
+      axisLabel: { color: 'gold', fontFamily: styles.fontFamily },
       // axisPointer: {
       //   value: Date.now() - 1000 * 60 * 60 * 23, // 23h before
       //   snap: true,
@@ -70,7 +70,7 @@ export default {
       // nameTextStyle: { fontSize: 24, color: 'red' },
       axisLabel: {
         color: 'gold',
-        fontFamily: `'Saira', sans-serif`,
+        fontFamily: styles.fontFamily,
         formatter: function (value, index) {
           value = value / 1000; // go to k
           return Math.round(value * 10) / 10 + 'k';
@@ -91,7 +91,7 @@ export default {
       triggerOn: 'click',
       borderColor: 'gold',
       borderWidth: 3,
-      textStyle: { fontFamily: `'Saira', sans-serif` },
+      textStyle: { fontFamily: styles.fontFamily },
       backgroundColor: 'rgba(55,55,55,0.9)', // default opacity 0.7, let's make a bit more dark
       // http://echarts.baidu.com/echarts2/doc/example/tooltip.html
       formatter: function (params,ticket,callback) {

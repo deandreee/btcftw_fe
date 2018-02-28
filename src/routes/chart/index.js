@@ -191,7 +191,7 @@ class Chart extends React.Component {
     return (
       <div style={{ }}>
 
-          {/* <h1 style={{ fontFamily: `'Saira', sans-serif`, textAlign: 'center', color: 'gold', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
+          {/* <h1 style={{ fontFamily: styles.fontFamily, textAlign: 'center', color: 'gold', marginTop: '0px', marginBottom: '0px', paddingTop: '20px' }}>
             Bitcoin vs Reddit Events
           </h1> */}
 

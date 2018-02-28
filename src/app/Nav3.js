@@ -1,7 +1,7 @@
 import React from 'react';
 
 export () => {
-  let linkStyle = { color: this.getColor(), fontFamily: `'Saira', sans-serif` };
+  let linkStyle = { color: this.getColor(), fontFamily: styles.fontFamily };
 
   return (
     <div style={{ paddingLeft: '10px', paddingTop: '10px', fontColor: this.getColor() }}>
