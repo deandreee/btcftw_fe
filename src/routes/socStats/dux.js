@@ -8,7 +8,8 @@ let initialState = {
   series: [],
   subList: [],
   options,
-  filterByTop: 'top10'
+  filterByTop: 'top10',
+  chartProp: 'comments_count', // ''
 }
 
 
@@ -27,35 +28,29 @@ let getFilterValues = ({ subList, value }) => {
   }
 }
 
-let calcOptionsWithFilter = ({ state, series, stats, subList, filterByTop }) => {
+let calcOptionsWithFilter = ({ state, series, stats, subList, filterByTop, chartProp }) => {
+
+  filterByTop = filterByTop || state.filterByTop;
+  chartProp = chartProp || state.chartProp;
 
   let filterValues = getFilterValues({ subList, value: filterByTop }).map(x => x.sub); // ['helloicon', 'zec'];
   series = series.filter(x => filterValues.includes(x.subName)); // subName
   stats = stats.filter(x => filterValues.includes(x.subName)); // subName
   subList = subList.filter(x => filterValues.includes(x.sub)); // sub
 
-  let options = calcOptions({ state, stats, series, subList });
+  let options = calcOptions({ state, stats, series, subList, chartProp });
   return options;
 }
 
 // stats, series = already filtered
-let calcOptions = ({ state, stats, series, subList }) => {
+let calcOptions = ({ state, stats, series, subList, chartProp }) => {
 
-  let min = Math.min(...stats.map(x => x && x.comments_count));
-  let max = Math.max(...stats.map(x => x && x.comments_count));
+  let min = Math.min(...stats.map(x => x && x[chartProp]));
+  let max = Math.max(...stats.map(x => x && x[chartProp]));
 
   let dates = stats.map(x => x && x.ts).sort((a, b) => a - b); // asc
   let firstDate =  dates[0];
   let axisPointerValue = dates.find(x => x > firstDate); // choose second for better ui understanding
-
-  // let { min, max } = chartUtils.getMinMax(stats.map(x => x && x.posts_count));
-
-  // let options = { ...state.options,
-  //   yAxis: { ...state.options.yAxis, min, max },
-  //   series: [{
-  //   ...state.options.series[0], data: stats.map(x => x && [ new Date(x.ts).getTime(), x.posts_count ]) }, {
-  //     ...state.options.series[1]
-  // }]}
 
   // let legend = { ...state.options.legend, data: subList.map(x => ({ name: x.sub})) };
   let legend = { ...state.options.legend, data: subList.map(x => x.sub) };
@@ -66,7 +61,7 @@ let calcOptions = ({ state, stats, series, subList }) => {
     legend,
     xAxis: { ...state.options.xAxis, axisPointer: { ...state.options.xAxis.axisPointer, value: axisPointerValue }},
     series: series.map(x => ({ type: 'line', name: x.subName, symbolSize: 10,
-      data: x.data.map(y => ([ new Date(y.ts).getTime(), y.comments_count ]))
+      data: x.data.map(y => ([ new Date(y.ts).getTime(), y[chartProp] ]))
     }))
   }
 
@@ -104,7 +99,9 @@ export function filterByTop(value) {
   return { type: 'SOC/filterByTop', value };
 }
 
-
+export function setChartProp(value) {
+  return { type: 'SOC/setChartProp', value };
+}
 
 export default createReducer(initialState, {
 
@@ -126,7 +123,14 @@ export default createReducer(initialState, {
     let { stats, series, subList } = state;
     let filterByTop = action.value;
     let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
-    return { ...state, options, filterByTop: action.value }; // only change options !!!
-  }
+    return { ...state, options, filterByTop }; // only change options !!!
+  },
+
+  'SOC/setChartProp'(state, action) {
+    let { stats, series, subList } = state;
+    let chartProp = action.value;
+    let options = calcOptionsWithFilter({ state, stats, series, subList, chartProp });
+    return { ...state, options, chartProp }; // only change options !!!
+  },
 
 });

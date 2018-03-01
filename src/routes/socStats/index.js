@@ -12,7 +12,11 @@ import styles from 'app/styles';
 import access from 'safe-access';
 import 'echarts/lib/component/legendScroll';
 import * as utilsObj from 'utils/obj';
-import Filters from './Filters';
+import FilterTop from './FilterTop';
+import ChartProp from './ChartProp';
+import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
+import MobileDetect from 'mobile-detect';
+let md = new MobileDetect(window.navigator.userAgent);
 
 class SocStats extends React.Component {
 
@@ -82,11 +86,57 @@ class SocStats extends React.Component {
     console.log('onChartReady')
   }
 
+  titleStyle = {
+    fontFamily: styles.fontFamily,
+    // color: styles.colors.primary,
+    color: 'white',
+    fontSize: '12px'
+  }
+
+  toolbarStyle = {
+    backgroundColor: styles.colors.backgroundColor,
+    // color: styles.colors.primary
+  }
+
   render() {
     return (
       <div style={{ }}>
 
-          <Filters />
+        {/* double line */}
+        { md.phone() &&
+          <div>
+            <Toolbar style={this.toolbarStyle}>
+              <ToolbarGroup>
+                <ToolbarTitle style={this.titleStyle} text="Filter: " />
+                <FilterTop />
+              </ToolbarGroup>
+            </Toolbar>
+
+            <Toolbar style={this.toolbarStyle}>
+              <ToolbarGroup>
+                <ToolbarTitle style={this.titleStyle} text="Chart: " />
+                <ChartProp />
+              </ToolbarGroup>
+            </Toolbar>
+          </div>
+        }
+
+        {/* single line */}
+        { !md.phone() &&
+
+          <Toolbar style={this.toolbarStyle}>
+            <ToolbarGroup>
+              <ToolbarTitle style={this.titleStyle} text="Filter: " />
+              <FilterTop />
+            </ToolbarGroup>
+
+            <ToolbarGroup>
+              <ToolbarTitle style={this.titleStyle} text="Chart: " />
+              <ChartProp />
+            </ToolbarGroup>
+
+          </Toolbar>
+        }
 
           <ReactEcharts
             ref={(e) => { this.echarts_react = e; }}

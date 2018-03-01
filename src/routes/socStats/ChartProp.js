@@ -14,46 +14,62 @@ import * as utilsObj from 'utils/obj';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';import React from 'react';
 
 const radioStyles = {
-  radioButton: {
-    marginRight: 5,
-    // width: 'auto',
-    width: '150px'
+  group: {
+    display: 'flex',
+    flexDirection: 'row'
   },
+  radioButton: {
+    // marginRight: 5,
+    // width: 'auto',
+    // display: 'inline-block',
+    width: '150px',
+    display: 'inline-block'
+  },
+  labelStyle: {
+    fontFamily: styles.fontFamily,
+    // color: styles.colors.primary,
+    color: 'white',
+    fontSize: '12px'
+  }
 };
 
-class Filters extends React.Component {
+class ChartProp extends React.Component {
 
   onChange = (evt, value) => {
-    this.props.dispatch(socActions.filterByTop(value));
+    this.props.dispatch(socActions.setChartProp(value));
   }
 
   render() {
     return (
       <div style={{ }}>
-        <RadioButtonGroup defaultSelected="top10" onChange={this.onChange} style={{ display: 'flex' }} >
+        <RadioButtonGroup defaultSelected="comments_count" onChange={this.onChange} style={radioStyles.group} >
 
           <RadioButton
-            value="top10"
-            label="Top10"
+            value="comments_count"
+            label="Comments (Daily)"
             style={radioStyles.radioButton}
+            labelStyle={radioStyles.labelStyle}
           />
 
           <RadioButton
-            value="top10-20"
-            label="Top10-20"
+            value="posts_count"
+            label="Posts (Daily)"
             style={radioStyles.radioButton}
+            labelStyle={radioStyles.labelStyle}
           />
 
           <RadioButton
-            value="top20-30"
-            label="Top20-30"
+            value="subscribers"
+            label="Subscribers (Total)"
             style={radioStyles.radioButton}
+            labelStyle={radioStyles.labelStyle}
           />
 
         </RadioButtonGroup>
+
       </div>
     )
   }
 }
 
-export default connect(state => state.soc)(Filters);
+export default connect(state => state.soc)(ChartProp);
