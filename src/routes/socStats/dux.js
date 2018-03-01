@@ -7,23 +7,35 @@ let initialState = {
   stats: [],
   series: [],
   subList: [],
-  options
+  options,
+  filterByTop: 'top10'
 }
 
 
-let getFilterValues = ({ state, value }) => {
+let getFilterValues = ({ subList, value }) => {
   if (value === 'top10') {
-    return state.subList.slice(0, 9);
+    return subList.slice(0, 9);
   }
   else if (value === 'top10-20') {
-    return state.subList.slice(10, 19);
+    return subList.slice(10, 19);
   }
   else if (value === 'top20-30') {
-    return state.subList.slice(20, 29);
+    return subList.slice(20, 29);
   }
   else {
-    return state.subList;
+    return subList;
   }
+}
+
+let calcOptionsWithFilter = ({ state, series, stats, subList, filterByTop }) => {
+
+  let filterValues = getFilterValues({ subList, value: filterByTop }).map(x => x.sub); // ['helloicon', 'zec'];
+  series = series.filter(x => filterValues.includes(x.subName)); // subName
+  stats = stats.filter(x => filterValues.includes(x.subName)); // subName
+  subList = subList.filter(x => filterValues.includes(x.sub)); // sub
+
+  let options = calcOptions({ state, stats, series, subList });
+  return options;
 }
 
 // stats, series = already filtered
@@ -98,8 +110,9 @@ export default createReducer(initialState, {
 
   'SOC/loadSocStats/SUCCESS'(state, action) {
     let { stats, series, subList } = action;
+    let { filterByTop } = state;
 
-    let options = calcOptions({ state, stats, series, subList });
+    let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
     subList = sortSubsByLastValue({ state, stats, series, subList });
 
     return { ...state, stats, series, options, subList };
@@ -110,14 +123,10 @@ export default createReducer(initialState, {
   },
 
   'SOC/filterByTop'(state, action) {
-
-    let filterValues = getFilterValues({ state, value: action.value }).map(x => x.sub); // ['helloicon', 'zec'];
-    let series = state.series.filter(x => filterValues.includes(x.subName)); // subName
-    let stats = state.stats.filter(x => filterValues.includes(x.subName)); // subName
-    let subList = state.subList.filter(x => filterValues.includes(x.sub)); // subName
-
-    let options = calcOptions({ state, stats, series, subList });
-    return { ...state, options }; // only change options !!!
+    let { stats, series, subList } = state;
+    let filterByTop = action.value;
+    let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
+    return { ...state, options, filterByTop: action.value }; // only change options !!!
   }
 
 });

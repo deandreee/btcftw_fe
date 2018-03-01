@@ -14,11 +14,10 @@ import * as utilsObj from 'utils/obj';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';import React from 'react';
 
 const radioStyles = {
-  block: {
-    maxWidth: 250,
-  },
   radioButton: {
-    marginBottom: 16,
+    marginRight: 5,
+    // width: 'auto',
+    width: '150px'
   },
 };
 
@@ -31,7 +30,7 @@ class Filters extends React.Component {
   render() {
     return (
       <div style={{ }}>
-        <RadioButtonGroup name="shipSpeed" defaultSelected="not_light" onChange={this.onChange} /* style={{ display: 'flex', width: 'auto' }}*/ >
+        <RadioButtonGroup defaultSelected="top10" onChange={this.onChange} style={{ display: 'flex' }} >
 
           <RadioButton
             value="top10"
