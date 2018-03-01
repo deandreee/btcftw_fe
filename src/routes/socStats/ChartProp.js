@@ -65,6 +65,13 @@ class ChartProp extends React.Component {
             labelStyle={radioStyles.labelStyle}
           />
 
+          <RadioButton
+            value="subscribers_diff"
+            label="Subscribers (New)"
+            style={radioStyles.radioButton}
+            labelStyle={radioStyles.labelStyle}
+          />
+
         </RadioButtonGroup>
 
       </div>

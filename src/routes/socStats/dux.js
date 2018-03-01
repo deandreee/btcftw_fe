@@ -68,18 +68,14 @@ let calcOptions = ({ state, stats, series, subList, chartProp }) => {
   return options;
 }
 
-let sortSubsByLastValue = ({ state, stats, series, subList }) => {
+let sortSubsByLastValue = ({ state, stats, series, subList, chartProp }) => {
 
   let rev = stats.reverse();
   for (let sub of subList) {
     let last = rev.find(x => x.subName === sub.sub)
     if (last) {
-      sub.lastValue = last.comments_count;
+      sub.lastValue = last[chartProp];
     }
-    // let idx = rev.find(x => x.subName === sub.sub);
-    // if (idx >= 0) {
-    //   sub.lastValue = stats[idx].comments_count;
-    // }
   }
 
   return subList.sort((a, b) => b.lastValue - a.lastValue);
@@ -107,10 +103,10 @@ export default createReducer(initialState, {
 
   'SOC/loadSocStats/SUCCESS'(state, action) {
     let { stats, series, subList } = action;
-    let { filterByTop } = state;
+    let { filterByTop, chartProp } = state;
 
     let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
-    subList = sortSubsByLastValue({ state, stats, series, subList });
+    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp });
 
     return { ...state, stats, series, options, subList };
   },
@@ -130,7 +126,9 @@ export default createReducer(initialState, {
     let { stats, series, subList } = state;
     let chartProp = action.value;
     let options = calcOptionsWithFilter({ state, stats, series, subList, chartProp });
-    return { ...state, options, chartProp }; // only change options !!!
+    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp });
+
+    return { ...state, options, chartProp, subList }; // only change options !!!
   },
 
 });
