@@ -116,9 +116,11 @@ export default createReducer(initialState, {
   },
 
   'SOC/filterByTop'(state, action) {
-    let { stats, series, subList } = state;
+    let { stats, series, subList, chartProp } = state;
     let filterByTop = action.value;
     let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
+    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp });
+
     return { ...state, options, filterByTop }; // only change options !!!
   },
 

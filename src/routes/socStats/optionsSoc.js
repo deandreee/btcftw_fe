@@ -155,34 +155,14 @@ export default {
     // },
   },
 
+  color: [
+    '#b58900', '#cb4b16', '#dc322f', '#d33682', '#6c71c4', '#268bd2', '#2aa198', '#859900', // solarized original
+    '#002080', '#00ffff' // my added, not really working ... :/
+  ],
   series: [{
     color: styles.colors.primary,
     symbolSize: 1,
-    data: [], // btc.values.map(x => [x.x * 1000, x.y]),
+    data: [],
     type: 'line',
-    // markPoint: {
-    //         data: [
-    //             {type: 'max', name: '最大值'},
-    //             {type: 'min', name: '最小值'}
-    //         ]
-    //     },
-  }
-  // ,{
-  //   symbolSize: 12,
-  //
-  //   // maybe later, too big difference
-  //   // symbolSize: function (data) {
-  //   //   // return Math.sqrt(data[2]) / 5e2;
-  //   //   return Math.round(data[4] / 1000); // so 10-40
-  //   //   // return 15; //data[2] / 1000; // so 10-40
-  //   // },
-  //
-  //   data: [],
-  //   // color: 'rgb(37, 140, 249)',
-  //   color: styles.colors.primary,
-  //   // color: styles.colors.primary,
-  //   // color: 'orange',
-  //   type: 'scatter'
-  // }
-]
+  }]
 };
