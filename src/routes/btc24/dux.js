@@ -3,6 +3,7 @@ import createReducer from 'app/createReducer';
 import options from './optionsBTC';
 import * as chartUtils from 'chart/chartUtils';
 import ms from 'ms';
+import md from 'utils/md';
 
 let initialState = {
   posts: [],
@@ -17,7 +18,7 @@ export function loadReddit() {
   return {
     [CALL_API]: {
       types: ['BTC24/loadReddit'],
-      endpoint: '/r/posts24',
+      endpoint: `/r/posts24${md.phone() ? '/phone' : ''}`,
       method: 'GET'
     }
   };
@@ -47,7 +48,7 @@ export function loadBtc24h() {
   return {
     [CALL_API]: {
       types: ['BTC24/loadBtc24h'],
-      endpoint: '/r/btc24h',
+      endpoint: `/r/btc24h`,
       method: 'GET'
     }
   };

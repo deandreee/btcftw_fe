@@ -3,6 +3,7 @@ import createReducer from 'app/createReducer';
 import optionsETH from './optionsETH';
 import splitter from 'routes/chart/splitter';
 import * as chartUtils from 'chart/chartUtils';
+import md from 'utils/md';
 
 let initialState = {
   posts: [],
@@ -14,7 +15,7 @@ export function loadReddit() {
   return {
     [CALL_API]: {
       types: ['CHART/loadReddit'],
-      endpoint: '/r/posts-eth',
+      endpoint: `/r/posts-eth${md.phone() ? '/phone' : ''}`,
       method: 'GET'
     }
   };

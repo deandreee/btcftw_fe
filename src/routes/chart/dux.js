@@ -2,6 +2,7 @@ import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
 import options from './optionsBTC';
 import * as chartUtils from 'chart/chartUtils';
+import md from 'utils/md';
 
 let initialState = {
   posts: [],
@@ -14,7 +15,7 @@ export function loadReddit() {
   return {
     [CALL_API]: {
       types: ['CHART/loadReddit'],
-      endpoint: '/r/posts',
+      endpoint: `/r/posts${md.phone() ? '/phone' : ''}`,
       method: 'GET'
     }
   };
