@@ -1,7 +1,7 @@
 import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
 import options from './optionsBTC';
-import * as chartUtils from './chartUtils';
+import * as chartUtils from 'chart/chartUtils';
 import ms from 'ms';
 
 let initialState = {

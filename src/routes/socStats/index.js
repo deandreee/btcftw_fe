@@ -15,8 +15,7 @@ import * as utilsObj from 'utils/obj';
 import FilterTop from './FilterTop';
 import ChartProp from './ChartProp';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
-import MobileDetect from 'mobile-detect';
-let md = new MobileDetect(window.navigator.userAgent);
+import md from 'utils/md';
 
 class SocStats extends React.Component {
 

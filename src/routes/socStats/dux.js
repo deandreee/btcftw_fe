@@ -1,7 +1,7 @@
 import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
 import options from './optionsSoc';
-import * as chartUtils from '../btc24/chartUtils';
+import * as chartUtils from 'chart/chartUtils';
 
 let initialState = {
   stats: [],

@@ -1,8 +1,7 @@
 // import btc from './btc';
 import styles from 'app/styles';
 import splitter from './splitter';
-import MobileDetect from 'mobile-detect';
-let md = new MobileDetect(window.navigator.userAgent);
+import md from 'utils/md';
 
 let graphColor = 'gold';
 // let graphColor = 'rgb(0,253,255)';

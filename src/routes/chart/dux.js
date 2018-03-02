@@ -1,7 +1,7 @@
 import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
 import options from './optionsBTC';
-import * as chartUtils from 'routes/btc24/chartUtils';
+import * as chartUtils from 'chart/chartUtils';
 
 let initialState = {
   posts: [],

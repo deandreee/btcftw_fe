@@ -1,8 +1,7 @@
 // import btc from './btc';
 import splitter from './splitter';
 import styles from 'app/styles';
-import MobileDetect from 'mobile-detect';
-let md = new MobileDetect(window.navigator.userAgent);
+import md from 'utils/md';
 
 export default {
   backgroundColor: styles.colors.background,
