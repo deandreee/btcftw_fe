@@ -157,7 +157,11 @@ export default {
 
   color: [
     '#b58900', '#cb4b16', '#dc322f', '#d33682', '#6c71c4', '#268bd2', '#2aa198', '#859900', // solarized original
-    '#002080', '#00ffff' // my added, not really working ... :/
+
+    // my added, not really working ... :/
+    '#002080',
+    // '#00ffff', // cyan
+    '#0097a7' // color description : Dark cyan.'
   ],
   series: [{
     color: styles.colors.primary,

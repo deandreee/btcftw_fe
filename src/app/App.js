@@ -74,7 +74,7 @@ class App extends Component {
   }
 
   theme = getMuiTheme({ ...darkBaseTheme,
-    palette: { ...darkBaseTheme.palette, accent1Color: styles.colors.primary, }
+    palette: { ...darkBaseTheme.palette, accent1Color: styles.colors.primary, primary1Color: styles.colors.primary }
   });
 
   render() {

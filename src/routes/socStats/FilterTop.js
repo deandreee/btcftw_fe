@@ -19,7 +19,7 @@ const radioStyles = {
     // width: 'auto',
     width: '150px',
     // width: 'auto'
-    display: 'inline-block'
+    display: 'inline-block',
   },
   labelStyle: {
     fontFamily: styles.fontFamily,
@@ -27,6 +27,10 @@ const radioStyles = {
     color: 'white',
     fontSize: '12px'
   },
+  inputStyle: {
+    color: styles.colors.primary,
+    fill: styles.colors.primary
+  }
 };
 
 class FilterTop extends React.Component {
@@ -45,6 +49,7 @@ class FilterTop extends React.Component {
             label="Top10"
             style={radioStyles.radioButton}
             labelStyle={radioStyles.labelStyle}
+            inputStyle={radioStyles.inputStyle}
           />
 
           <RadioButton
@@ -52,6 +57,7 @@ class FilterTop extends React.Component {
             label="Top10-20"
             style={radioStyles.radioButton}
             labelStyle={radioStyles.labelStyle}
+            inputStyle={radioStyles.inputStyle}
           />
 
           <RadioButton
@@ -59,6 +65,7 @@ class FilterTop extends React.Component {
             label="Top20-30"
             style={radioStyles.radioButton}
             labelStyle={radioStyles.labelStyle}
+            inputStyle={radioStyles.inputStyle}
           />
 
         </RadioButtonGroup>
