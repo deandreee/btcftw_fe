@@ -1,8 +1,4 @@
-// import btc from './btc';
-import splitter from '../btc24/splitter';
 import styles from 'app/styles';
-import md from 'utils/md';
-import * as chartUtils from 'chart/chartUtils';
 import xAxis from 'chart/xAxis';
 import tooltip from 'chart/tooltip';
 

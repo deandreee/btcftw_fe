@@ -26,7 +26,7 @@
     "redux": "3.7.2",
     "redux-immutable-state-invariant": "2.1.0",
     "redux-thunk": "2.2.0",
-    "safe-access": "0.1.0",
+    "safe-access": "^0.1.0",
     "underscore": "1.8.3"
   },
   "scripts": {

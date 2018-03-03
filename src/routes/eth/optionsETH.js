@@ -1,5 +1,3 @@
-// import btc from './btc';
-import splitter from 'routes/chart/splitter';
 import optionsBTC from 'routes/chart/optionsBTC';
 import styles from 'app/styles';
 

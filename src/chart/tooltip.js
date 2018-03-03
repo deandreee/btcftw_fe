@@ -3,8 +3,8 @@ import md from 'utils/md'
 
 export default {
   show: true,
-  trigger: 'axis',
-  triggerOn: 'click',
+  // trigger: 'axis', // [ default: 'item' ]
+  // triggerOn: 'click', // click mousemove // [ default: 'mousemove|click' ]
   borderColor: styles.colors.primary,
   borderWidth: 3,
   textStyle: { fontFamily: styles.fontFamily },

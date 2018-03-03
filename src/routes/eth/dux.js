@@ -1,7 +1,7 @@
 import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
 import optionsETH from './optionsETH';
-import splitter from 'routes/chart/splitter';
+import splitter from 'chart/splitter';
 import * as chartUtils from 'chart/chartUtils';
 import md from 'utils/md';
 
