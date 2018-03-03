@@ -16,6 +16,7 @@ import FilterTop from './FilterTop';
 import ChartProp from './ChartProp';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 import md from 'utils/md';
+import showInitTooltip from 'chart/showInitTooltip';
 
 class SocStats extends React.Component {
 
@@ -38,21 +39,7 @@ class SocStats extends React.Component {
 
     this.setState({ isLoading: false });
 
-    // hacky, but works
-    // https://github.com/ecomfe/echarts/blob/master/test/showTip.html
-    let echarts_instance = this.echarts_react.getEchartsInstance();
-    setTimeout(() => {
-      echarts_instance.dispatchAction({
-        type: 'showTip',
-        seriesIndex: 0,
-        dataIndex: 1,
-        // position: function () {
-        //   return [10, 10];
-        // }
-      })
-    }, 500)
-
-
+    showInitTooltip(this.echarts_react);
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {

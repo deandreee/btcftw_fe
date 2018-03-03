@@ -10,6 +10,7 @@ import CommentsHor from './CommentsHor';
 import shallowCompare from 'app/shallowCompare';
 import styles from 'app/styles';
 import access from 'safe-access';
+import showInitTooltip from 'chart/showInitTooltip';
 
 class Btc24 extends React.Component {
 
@@ -48,6 +49,8 @@ class Btc24 extends React.Component {
 
     // await this.props.dispatch(btc24Actions.loadTicker());
     // console.log('data after loadTicker', this.props.chart.options.series[0]);
+
+    showInitTooltip(this.echarts_react, 1);
 
   }
 
@@ -204,6 +207,7 @@ class Btc24 extends React.Component {
 
 
           <ReactEcharts
+            ref={(e) => { this.echarts_react = e; }}
             option={this.getOption()}
             style={{ height: '500px', width: '100%' }}
             notMerge={true}

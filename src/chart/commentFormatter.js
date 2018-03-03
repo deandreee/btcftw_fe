@@ -5,7 +5,7 @@ import access from 'safe-access';
 
 export default function (params,ticket,callback) {
 
-  // console.log('tooltip', params);
+  console.log('tooltip', params);
 
   let data = access(params, '[0].data');
   let seriesIndex = access(params, '[0].seriesIndex');

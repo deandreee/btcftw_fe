@@ -9,6 +9,7 @@ import ReactGA from 'react-ga';
 import shallowCompare from 'app/shallowCompare';
 import access from 'safe-access';
 import styles from 'app/styles';
+import showInitTooltip from 'chart/showInitTooltip';
 
 class Chart extends React.Component {
 
@@ -37,6 +38,8 @@ class Chart extends React.Component {
 
     // await this.props.dispatch(chartActions.loadTicker());
     // console.log('data after loadTicker', this.props.chart.options.series[0]);
+
+    showInitTooltip(this.echarts_react, 1);
 
   }
 
@@ -196,6 +199,7 @@ class Chart extends React.Component {
           </h1> */}
 
           <ReactEcharts
+            ref={(e) => { this.echarts_react = e; }}
             option={this.getOption()}
             style={{ height: '500px', width: '100%' }}
             notMerge={true}

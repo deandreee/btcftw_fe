@@ -7,6 +7,7 @@ import * as appActions from 'app/dux';
 import bluebird from 'bluebird';
 import ReactGA from 'react-ga';
 import styles from 'app/styles';
+import showInitTooltip from 'chart/showInitTooltip';
 
 class ChartEth extends React.Component {
 
@@ -31,6 +32,9 @@ class ChartEth extends React.Component {
     await this.massMerge();
 
     this.setState({ isLoading: false });
+
+    showInitTooltip(this.echarts_react, 1);
+
   }
 
   getDateBeforeIndex = (data, post) => {
@@ -162,6 +166,7 @@ class ChartEth extends React.Component {
           </h1> */}
 
           <ReactEcharts
+            ref={(e) => { this.echarts_react = e; }}
             option={this.getOption()}
             style={{ height: '500px', width: '100%' }}
             notMerge={true}
