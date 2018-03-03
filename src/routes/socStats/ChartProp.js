@@ -42,7 +42,7 @@ class ChartProp extends React.Component {
   render() {
     return (
       <div style={{ }}>
-        <RadioButtonGroup defaultSelected="comments_count" onChange={this.onChange} style={radioStyles.group} >
+        <RadioButtonGroup name="soc-chart-prop" defaultSelected="comments_count" onChange={this.onChange} style={radioStyles.group} >
 
           <RadioButton
             value="comments_count"

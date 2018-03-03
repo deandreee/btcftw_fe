@@ -42,7 +42,7 @@ class FilterTop extends React.Component {
   render() {
     return (
       <div style={{ }}>
-        <RadioButtonGroup defaultSelected="top10" onChange={this.onChange} style={{ display: 'flex' }} >
+        <RadioButtonGroup name="soc-filter-top" defaultSelected="top10" onChange={this.onChange} style={{ display: 'flex' }} >
 
           <RadioButton
             value="top10"

@@ -1,26 +1,26 @@
 import optionsBTC from 'routes/chart/optionsBTC';
 import styles from 'app/styles';
+import xAxis from 'chart/xAxis';
+import tooltip from 'chart/tooltip';
+import commentFormatter from 'chart/commentFormatter'
 
 export default { ...optionsBTC,
 
-  xAxis: {
-    type: 'time',
-    axisLabel: { color: 'rgb(78,142,233)', fontFamily: styles.fontFamily }
-  },
+  xAxis: { ...xAxis, axisLabel: { ...xAxis.axisLabel, formatter: null }},
   yAxis: {
     min: 500,
     max: 1500,
     axisLabel: {
-      color: 'rgb(78,142,233)',
+      color: styles.colors.primary,
       fontFamily: styles.fontFamily,
       formatter: function (value, index) {
         return Math.round(value / 100) / 10 + 'k';
       }
     }
   },
-  tooltip: { ...optionsBTC.tooltip, borderColor: 'rgb(78,142,233)' },
+  tooltip: { ...tooltip, formatter: commentFormatter },
   series: [{
-    color: 'rgb(78,142,233)',
+    color: styles.colors.primary,
     symbolSize: 1,
     data: [],
     type: 'line',
@@ -28,7 +28,7 @@ export default { ...optionsBTC,
   ,{
     symbolSize: 15,
     data: [],
-    color: 'rgb(78,142,233)',
+    color: styles.colors.primary,
     type: 'scatter'
   }
 ]}
