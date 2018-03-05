@@ -27,6 +27,7 @@ export default { ...optionsBTC,
   }
   ,{
     symbolSize: 15,
+    // symbol: 'diamond',
     data: [],
     color: styles.colors.primary,
     type: 'scatter'

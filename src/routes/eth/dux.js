@@ -1,9 +1,10 @@
 import { CALL_API } from 'app/apiMiddleware';
 import createReducer from 'app/createReducer';
-import optionsETH from './optionsETH';
-import splitter from 'chart/splitter';
-import * as chartUtils from 'chart/chartUtils';
 import md from 'utils/md';
+import * as chartUtils from 'chart/chartUtils';
+import optionsETH from './optionsETH';
+// import optionsETH from './optionsTest';
+
 
 let initialState = {
   posts: [],
@@ -49,6 +50,7 @@ export default createReducer(initialState, {
     return { ...state, posts: action.posts };
   },
 
+  // TODO: comment back when out of test
   'CHART/loadEth/SUCCESS'(state, action) {
     let { eth } = action;
     let { min, max } = chartUtils.getMinMax(eth.values.map(x => x.y));
@@ -65,7 +67,5 @@ export default createReducer(initialState, {
       data: action.data }] }
     };
   },
-
-
 
 });
