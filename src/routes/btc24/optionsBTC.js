@@ -61,6 +61,7 @@ export default {
     color: styles.colors.primary,
     // color: 'orange',
     type: 'scatter',
+    z: 5
 
   }],
 

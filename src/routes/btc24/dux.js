@@ -7,10 +7,7 @@ import md from 'utils/md';
 
 let initialState = {
   posts: [],
-  comments: [],
   options,
-  btc: [],
-  tickers: [],
   isBtc24Loaded: false
 }
 
@@ -19,26 +16,6 @@ export function loadReddit() {
     [CALL_API]: {
       types: ['BTC24/loadReddit'],
       endpoint: `/r/posts24${md.phone() ? '/phone' : ''}`,
-      method: 'GET'
-    }
-  };
-}
-
-export function loadComments() {
-  return {
-    [CALL_API]: {
-      types: ['BTC24/loadComments'],
-      endpoint: '/r/comments',
-      method: 'GET'
-    }
-  };
-}
-
-export function loadBtc() {
-  return {
-    [CALL_API]: {
-      types: ['BTC24/loadBtc'],
-      endpoint: '/r/csv',
       method: 'GET'
     }
   };
@@ -62,19 +39,6 @@ export default createReducer(initialState, {
 
   'BTC24/loadReddit/SUCCESS'(state, action) {
     return { ...state, posts: action.posts };
-  },
-
-  'BTC24/loadComments/SUCCESS'(state, action) {
-    return { ...state, comments: action.comments };
-  },
-
-  'BTC24/loadBtc/SUCCESS'(state, action) {
-    let { btc } = action;
-
-    return { ...state, btc, options: { ...state.options, series: [{
-      ...state.options.series[0], data: btc.values.map(x => [x.x, x.y]) }, {
-        ...state.options.series[1]
-    }]}};
   },
 
   'BTC24/loadBtc24h/SUCCESS'(state, action) {

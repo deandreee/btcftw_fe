@@ -11,11 +11,21 @@ import shallowCompare from 'app/shallowCompare';
 import styles from 'app/styles';
 import access from 'safe-access';
 import showInitTooltip from 'chart/showInitTooltip';
+import * as utilsObj from 'utils/obj';
 
 class Btc24 extends React.Component {
 
   state = {
     isLoading: true
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    // TODO: need to think here about which props to compare
+    let propsToCompare = [ 'posts', 'options' ];
+    let component = { props: utilsObj.pick(this.props, propsToCompare), state: this.state }
+    let res = shallowCompare(component, utilsObj.pick(nextProps, propsToCompare), nextState);
+    console.log('Btc24: shouldComponentUpdate', res);
+    return res;
   }
 
   loadBtc24h = () => {
@@ -38,26 +48,15 @@ class Btc24 extends React.Component {
     // ws.connect(this.props.dispatch);
 
     await bluebird.all([
-      // this.props.dispatch(btc24Actions.loadBtc()),
       this.loadBtc24h(),
-      this.props.dispatch(btc24Actions.loadReddit()),
-      // this.props.dispatch(btc24Actions.loadComments())
+      this.props.dispatch(btc24Actions.loadReddit())
     ]);
 
     await this.massMerge();
     this.setState({ isLoading: false });
 
-    // await this.props.dispatch(btc24Actions.loadTicker());
-    // console.log('data after loadTicker', this.props.chart.options.series[0]);
-
     showInitTooltip(this.echarts_react, 1);
 
-  }
-
-  shouldComponentUpdate = (nextProps, nextState) => {
-    return shallowCompare(this, nextProps, nextState);
-    // console.log('btc24: shouldComponentUpdate', res);
-    // return res;
   }
 
   getDateBeforeIndex = (data, post) => {
@@ -218,7 +217,7 @@ class Btc24 extends React.Component {
             loadingOption={{ color: styles.colors.primary, maskColor: styles.colors.background }}
           />
 
-        <CommentsHor />
+        {/* <CommentsHor /> */}
 
       </div>
     )
