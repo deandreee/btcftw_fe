@@ -8,11 +8,22 @@ import bluebird from 'bluebird';
 import ReactGA from 'react-ga';
 import styles from 'app/styles';
 import showInitTooltip from 'chart/showInitTooltip';
+import shallowCompare from 'app/shallowCompare';
+import * as utilsObj from 'utils/obj';
 
 class ChartEth extends React.Component {
 
   state = {
     isLoading: true
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    // TODO: need to think here about which props to compare
+    let propsToCompare = [ 'posts', 'options' ];
+    let component = { props: utilsObj.pick(this.props, propsToCompare), state: this.state }
+    let res = shallowCompare(component, utilsObj.pick(nextProps, propsToCompare), nextState);
+    console.log('eth: shouldComponentUpdate', res);
+    return res;
   }
 
   componentWillMount = async() => {
