@@ -10,11 +10,21 @@ import shallowCompare from 'app/shallowCompare';
 import access from 'safe-access';
 import styles from 'app/styles';
 import showInitTooltip from 'chart/showInitTooltip';
+import * as utilsObj from 'utils/obj';
 
 class Chart extends React.Component {
 
   state = {
     isLoading: true
+  }
+
+  shouldComponentUpdate = (nextProps, nextState) => {
+    // TODO: need to think here about which props to compare
+    let propsToCompare = [ 'posts', 'options' ];
+    let component = { props: utilsObj.pick(this.props, propsToCompare), state: this.state }
+    let res = shallowCompare(component, utilsObj.pick(nextProps, propsToCompare), nextState);
+    console.log('btc: shouldComponentUpdate', res);
+    return res;
   }
 
   componentWillMount = async () => {
@@ -41,12 +51,6 @@ class Chart extends React.Component {
 
     showInitTooltip(this.echarts_react, 1);
 
-  }
-
-  shouldComponentUpdate = (nextProps, nextState) => {
-    let res = shallowCompare(this, nextProps, nextState);
-    // console.log('btc24: shouldComponentUpdate', res);
-    return res;
   }
 
   getDateBeforeIndex = (data, post) => {

@@ -24,7 +24,7 @@ class Btc24 extends React.Component {
     let propsToCompare = [ 'posts', 'options' ];
     let component = { props: utilsObj.pick(this.props, propsToCompare), state: this.state }
     let res = shallowCompare(component, utilsObj.pick(nextProps, propsToCompare), nextState);
-    console.log('Btc24: shouldComponentUpdate', res);
+    console.log('btc24: shouldComponentUpdate', res);
     return res;
   }
 
