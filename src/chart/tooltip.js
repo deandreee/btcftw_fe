@@ -10,4 +10,7 @@ export default {
   textStyle: { fontFamily: styles.fontFamily },
   backgroundColor: 'rgba(55,55,55,0.9)', // default opacity 0.7, let's make a bit more dark
   position: md.phone() ? function (pt) { return [10, 10]; } : null,
+  // enterable: true,
+  // showDelay: 500,
+  // hideDelay: 5000 // doesn't really change anything
 }

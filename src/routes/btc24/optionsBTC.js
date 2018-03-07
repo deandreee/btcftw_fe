@@ -40,18 +40,7 @@ export default {
     symbolSize: 1,
     data: [],
     type: 'line',
-
-    // areaStyle: {
-    //   normal: {
-    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-    //       offset: 0,
-    //       color: 'gold'
-    //     }, {
-    //       offset: 1,
-    //       color: 'orange'
-    //     }])
-    //   }
-    // },
+    snap: false
   }
   ,{
     symbolSize: 15,
@@ -61,7 +50,7 @@ export default {
     color: styles.colors.primary,
     // color: 'orange',
     type: 'scatter',
-    z: 5
+    snap: true
 
   }],
 

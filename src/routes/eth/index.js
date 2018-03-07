@@ -10,6 +10,7 @@ import styles from 'app/styles';
 import showInitTooltip from 'chart/showInitTooltip';
 import shallowCompare from 'app/shallowCompare';
 import * as utilsObj from 'utils/obj';
+// import * as test from './test';
 
 class ChartEth extends React.Component {
 

@@ -14,7 +14,7 @@ export default {
   axisPointer: {
     // value: '2016-10-7',
     snap: true,
-    triggerOn: 'mousemove', // click mousemove
+    triggerOn: 'mousemove', // click mousemove mousemove|click
     type: 'line', // line / shadow
     // status: true,
     lineStyle: {
