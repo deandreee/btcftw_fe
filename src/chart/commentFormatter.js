@@ -29,7 +29,7 @@ export default function (params,ticket,callback) {
 
       let permalink = data[3];
       if (permalink) {
-        res += `<a target="_blank" style="color: green" href="https://reddit.com/${permalink}">View in Reddit</a>`;
+        res += `<a target="_blank" style="color: ${styles.colors.accent}" href="https://reddit.com/${permalink}">View in Reddit</a>`;
       }
 
       callback(ticket, res);

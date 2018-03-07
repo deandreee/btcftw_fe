@@ -19,7 +19,7 @@ export default {
     max: 11000,
     // nameTextStyle: { fontSize: 24, color: 'red' },
     axisLabel: {
-      color: 'gold',
+      color: styles.colors.primary,
       fontFamily: styles.fontFamily,
       formatter: function (value, index) {
         value = value / 1000; // go to k

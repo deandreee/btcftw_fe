@@ -50,7 +50,7 @@ export default class Item extends React.PureComponent {
           primaryText={
             <span style={lines2}>
               {comment.author} ({timeDisplay}) @
-              <a href={ 'https://reddit.com/' + comment.permalink } style={{ color: 'lightblue' }} target='_blank' onClick={this.onClick}>  {comment.link_title}</a>
+              <a href={ 'https://reddit.com/' + comment.permalink } style={{ color: styles.colors.accent }} target='_blank' onClick={this.onClick}>  {comment.link_title}</a>
             </span>
           }
           secondaryText={
