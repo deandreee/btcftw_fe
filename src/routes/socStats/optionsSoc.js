@@ -61,6 +61,6 @@ export default {
     color: styles.colors.primary,
     symbolSize: 1,
     data: [],
-    type: 'line',
+    type: 'line'
   }]
 };

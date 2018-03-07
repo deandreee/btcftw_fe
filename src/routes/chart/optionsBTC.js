@@ -36,7 +36,8 @@ export default {
     symbolSize: 15,
     data: [],
     color: styles.colors.primary,
-    type: 'scatter'
+    type: 'scatter',
+    snap: true
   }
 ]
 };

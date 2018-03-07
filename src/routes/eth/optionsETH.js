@@ -30,6 +30,7 @@ export default { ...optionsBTC,
     // symbol: 'diamond',
     data: [],
     color: styles.colors.primary,
-    type: 'scatter'
+    type: 'scatter',
+    snap: true
   }
 ]}

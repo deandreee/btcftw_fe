@@ -60,8 +60,12 @@ let calcOptions = ({ state, stats, series, subList, chartProp }) => {
     yAxis: { ...state.options.yAxis, min, max },
     legend,
     xAxis: { ...state.options.xAxis, axisPointer: { ...state.options.xAxis.axisPointer, value: axisPointerValue }},
-    series: series.map(x => ({ type: 'line', name: x.subName, symbolSize: 10,
-      data: x.data.map(y => ([ new Date(y.ts).getTime(), y[chartProp] ]))
+    series: series.map(x => ({
+        type: 'line',
+        name: x.subName,
+        symbolSize: 10,
+        snap: true,
+        data: x.data.map(y => ([ new Date(y.ts).getTime(), y[chartProp] ]))
     }))
   }
 
