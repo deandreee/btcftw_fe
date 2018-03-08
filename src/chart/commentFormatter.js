@@ -2,10 +2,14 @@ import splitter from './splitter';
 import styles from 'app/styles';
 import md from 'utils/md';
 import access from 'safe-access';
+import sendMouseoverEvent from './sendMouseoverEvent';
 
 export default function (params,ticket,callback) {
 
   // console.log('tooltip', params);
+
+  // not really working, let's skip for now, too much events anyway
+  // sendMouseoverEvent();
 
   let data = access(params, '[0].data');
   let seriesIndex = access(params, '[0].seriesIndex');
