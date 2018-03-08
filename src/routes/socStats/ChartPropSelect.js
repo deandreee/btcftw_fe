@@ -30,7 +30,7 @@ class ChartPropSelect extends React.Component {
           fullWidth={true}
         >
           <MenuItem value={"comments_count"} primaryText="Comments (Daily)" />
-          <MenuItem value={"posts_count-20"} primaryText="Posts (Daily)" />
+          <MenuItem value={"posts_count"} primaryText="Posts (Daily)" />
           <MenuItem value={"subscribers"} primaryText="Subscribers (Total)" />
           <MenuItem value={"subscribers_diff"} primaryText="Subscribers (New)" />
         </SelectField>

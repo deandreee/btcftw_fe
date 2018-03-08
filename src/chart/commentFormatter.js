@@ -17,7 +17,7 @@ export default function (params,ticket,callback) {
     return;
   }
 
-  setTimeout(function (){
+  setTimeout(function () {
 
     let txt = data[2] || data[1];
     if (!txt) {
