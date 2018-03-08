@@ -1,13 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import * as socActions from './dux';
-import styles from 'app/styles';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import ReactGA from 'react-ga';
 
 class FilterTopSelect extends React.Component {
 
   onChange = (evt, key, value) => {
+
+    ReactGA.event({
+      category: 'socStats',
+      action: 'filterByTop',
+      label: value
+    });
+
     this.props.dispatch(socActions.filterByTop(value));
   }
 

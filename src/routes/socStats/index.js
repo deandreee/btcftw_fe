@@ -2,24 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactEcharts from 'echarts-for-react';  // or var ReactEcharts = require('echarts-for-react');
 import * as socActions from './dux';
-import * as appActions from 'app/dux';
-import bluebird from 'bluebird';
-import * as ws from 'routes/live/ws';
 import ReactGA from 'react-ga';
 // import CommentsHor from './CommentsHor';
 import shallowCompare from 'app/shallowCompare';
 import styles from 'app/styles';
-import access from 'safe-access';
 import 'echarts/lib/component/legendScroll';
 import * as utilsObj from 'utils/obj';
-import FilterTop from './FilterTop';
 import FilterTopSelect from './FilterTopSelect';
-import ChartProp from './ChartProp';
 import ChartPropSelect from './ChartPropSelect';
-import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
-import md from 'utils/md';
+import { Toolbar, ToolbarGroup } from 'material-ui/Toolbar';
 import showInitTooltip from 'chart/showInitTooltip';
-import AppBar from 'material-ui/AppBar';
+import config from 'app/config';
 
 class SocStats extends React.Component {
 
@@ -28,6 +21,8 @@ class SocStats extends React.Component {
   }
 
   componentWillMount = async () => {
+
+    console.log('ReactGA send', config.trackingId);
 
     ReactGA.event({
       category: 'socStats',
