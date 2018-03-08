@@ -27,6 +27,7 @@ class ChartPropSelect extends React.Component {
           floatingLabelText="Chart: "
           value={this.props.chartProp}
           onChange={this.onChange}
+          style={{ width: '200px' }}
           fullWidth={true}
         >
           <MenuItem value={"comments_count"} primaryText="Comments (Daily)" />
