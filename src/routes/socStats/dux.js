@@ -58,14 +58,14 @@ let calcOptions = ({ state, stats, series, subList, chartProp }) => {
 
   let options = { ...state.options,
     yAxis: { ...state.options.yAxis, min, max },
-    legend,
+    // legend, don't really need this since we have tooltip. also, bad position on mobile, so let's skip for now
     xAxis: { ...state.options.xAxis, axisPointer: { ...state.options.xAxis.axisPointer, value: axisPointerValue }},
     series: series.map(x => ({
         type: 'line',
         name: x.subName,
         symbolSize: 10,
         snap: true,
-        data: x.data.map(y => ([ new Date(y.ts).getTime(), y[chartProp] ]))
+        data: x.data.map(y => ([ new Date(y.ts), y[chartProp] ]))
     }))
   }
 

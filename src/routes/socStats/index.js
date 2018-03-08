@@ -13,10 +13,13 @@ import access from 'safe-access';
 import 'echarts/lib/component/legendScroll';
 import * as utilsObj from 'utils/obj';
 import FilterTop from './FilterTop';
+import FilterTopSelect from './FilterTopSelect';
 import ChartProp from './ChartProp';
+import ChartPropSelect from './ChartPropSelect';
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from 'material-ui/Toolbar';
 import md from 'utils/md';
 import showInitTooltip from 'chart/showInitTooltip';
+import AppBar from 'material-ui/AppBar';
 
 class SocStats extends React.Component {
 
@@ -84,45 +87,20 @@ class SocStats extends React.Component {
     // color: styles.colors.primary
   }
 
+  toolbarGroupStyle = {
+    margin: '0 auto', // center
+  }
+
   render() {
     return (
       <div style={{ }}>
 
-        {/* double line */}
-        { md.phone() &&
-          <div>
-            <Toolbar style={this.toolbarStyle}>
-              <ToolbarGroup>
-                <ToolbarTitle style={this.titleStyle} text="Filter: " />
-                <FilterTop />
-              </ToolbarGroup>
-            </Toolbar>
-
-            <Toolbar style={this.toolbarStyle}>
-              <ToolbarGroup>
-                <ToolbarTitle style={this.titleStyle} text="Chart: " />
-                <ChartProp />
-              </ToolbarGroup>
-            </Toolbar>
-          </div>
-        }
-
-        {/* single line */}
-        { !md.phone() &&
-
-          <Toolbar style={this.toolbarStyle}>
-            <ToolbarGroup>
-              <ToolbarTitle style={this.titleStyle} text="Filter: " />
-              <FilterTop />
-            </ToolbarGroup>
-
-            <ToolbarGroup>
-              <ToolbarTitle style={this.titleStyle} text="Chart: " />
-              <ChartProp />
-            </ToolbarGroup>
-
-          </Toolbar>
-        }
+        <Toolbar style={this.toolbarStyle}>
+          <ToolbarGroup style={this.toolbarGroupStyle}>
+            <FilterTopSelect />
+            <ChartPropSelect />
+          </ToolbarGroup>
+        </Toolbar>
 
           <ReactEcharts
             ref={(e) => { this.echarts_react = e; }}
