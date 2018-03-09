@@ -4,6 +4,7 @@ import * as socActions from './dux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import ReactGA from 'react-ga';
+import md from 'utils/md';
 
 class FilterTopSelect extends React.Component {
 
@@ -18,6 +19,10 @@ class FilterTopSelect extends React.Component {
     this.props.dispatch(socActions.filterByTop(value));
   }
 
+  style = {
+    width: md.phone() ? '150px' : '200px'
+  }
+
   render() {
     return (
       <div style={{ }}>
@@ -26,7 +31,7 @@ class FilterTopSelect extends React.Component {
           floatingLabelText="Filter: "
           value={this.props.filterByTop}
           onChange={this.onChange}
-          style={{ width: '200px' }}
+          style={this.style}
           fullWidth={true}
         >
           <MenuItem value={"top10"} primaryText="Top10" />

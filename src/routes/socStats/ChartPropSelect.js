@@ -5,6 +5,7 @@ import ReactGA from 'react-ga';
 import 'echarts/lib/component/legendScroll';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import md from 'utils/md';
 
 class ChartPropSelect extends React.Component {
 
@@ -19,6 +20,10 @@ class ChartPropSelect extends React.Component {
     this.props.dispatch(socActions.setChartProp(value));
   }
 
+  style = {
+    width: md.phone() ? '150px' : '200px'
+  }
+
   render() {
     return (
       <div style={{ }}>
@@ -27,7 +32,7 @@ class ChartPropSelect extends React.Component {
           floatingLabelText="Chart: "
           value={this.props.chartProp}
           onChange={this.onChange}
-          style={{ width: '200px' }}
+          style={this.style}
           fullWidth={true}
         >
           <MenuItem value={"comments_count"} primaryText="Comments (Daily)" />

@@ -1,17 +1,37 @@
 import styles from 'app/styles';
-import md from 'utils/md'
+import md from 'utils/md';
+import access from 'safe-access';
 
-let positionDesktop = (pt) => {
+// (point: Array, params: Object|Array.<Object>, dom: HTMLDomElement, rect: Object, size: Object) => Array
+// size:
+// contentSize [465, 185]
+// viewSize [1920, 500]
+let positionDesktop = (pt, params, domElem, rect, size) => {
+
+  // console.log(pt, rect, size);
   // console.log(pt);
+
   let [ x, y ] = pt;
   // return [ x - 10, y - 1 ];
-  return [ x, y ];
-  // return [ x + 20, y + 20 ];
-  // return null;
+  // return [ x, y ];
+
+  let contentX = access(size, 'contentSize[0]');
+  let viewX = access(size, 'viewSize[0]');
+
+  if (!contentX || !viewX) { // just in case
+    return [ x, y ];
+  }
+  else if (x + contentX > viewX) {
+    return [ x - contentX, y ];
+  }
+  else {
+    return [ x, y ];
+  }
+
 }
 
 let positionMobile = (pt) => {
-  return [10, 10];
+  return [30, 10];
 }
 
 export default {
