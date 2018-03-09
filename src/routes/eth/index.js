@@ -23,7 +23,7 @@ class ChartEth extends React.Component {
     let propsToCompare = [ 'posts', 'options' ];
     let component = { props: utilsObj.pick(this.props, propsToCompare), state: this.state }
     let res = shallowCompare(component, utilsObj.pick(nextProps, propsToCompare), nextState);
-    console.log('eth: shouldComponentUpdate', res);
+    // console.log('eth: shouldComponentUpdate', res);
     return res;
   }
 

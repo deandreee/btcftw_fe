@@ -21,7 +21,7 @@ class ChartPropSelect extends React.Component {
   }
 
   style = {
-    width: md.phone() ? '150px' : '200px'
+    width: window.screen.availWidth < 400 ? '150px' : '200px'
   }
 
   render() {

@@ -22,8 +22,6 @@ class SocStats extends React.Component {
 
   componentWillMount = async () => {
 
-    console.log('ReactGA send', config.trackingId);
-
     ReactGA.event({
       category: 'socStats',
       action: 'componentWillMount'
@@ -45,7 +43,7 @@ class SocStats extends React.Component {
     let propsToCompare = [ 'stats', 'options' ];
     let component = { props: utilsObj.pick(this.props, propsToCompare), state: this.state }
     let res = shallowCompare(component, utilsObj.pick(nextProps, propsToCompare), nextState);
-    console.log('socStats: shouldComponentUpdate', res);
+    // console.log('socStats: shouldComponentUpdate', res);
     return res;
   }
 
@@ -67,7 +65,7 @@ class SocStats extends React.Component {
   }
 
   onChartReady = () => {
-    console.log('onChartReady')
+    // console.log('onChartReady')
   }
 
   titleStyle = {
