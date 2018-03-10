@@ -15,10 +15,10 @@ let initialState = {
 
 let getFilterValues = ({ subList, value }) => {
   if (value === 'top10') {
-    return subList.slice(0, 9);
+    return subList.slice(0, 10);
   }
   else if (value === 'top10-20') {
-    return subList.slice(10, 19);
+    return subList.slice(10, 20);
   }
   else if (value === 'top20-30') {
     return subList.slice(20, 29);
@@ -64,6 +64,7 @@ let calcOptions = ({ state, stats, series, subList, chartProp }) => {
         type: 'line',
         name: x.subName,
         symbolSize: 10,
+        color: x.color || null,
         snap: true,
         data: x.data.map(y => ([ new Date(y.ts), y[chartProp] ]))
     }))
@@ -74,7 +75,7 @@ let calcOptions = ({ state, stats, series, subList, chartProp }) => {
 
 let sortSubsByLastValue = ({ state, stats, series, subList, chartProp }) => {
 
-  let rev = stats.reverse();
+  let rev = stats.slice().reverse(); // reverse changes original!!!
   for (let sub of subList) {
     let last = rev.find(x => x.subName === sub.sub)
     if (last) {
@@ -109,8 +110,8 @@ export default createReducer(initialState, {
     let { stats, series, subList } = action;
     let { filterByTop, chartProp } = state;
 
+    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp }); // sort before filter !!!
     let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
-    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp });
 
     return { ...state, stats, series, options, subList };
   },
@@ -122,17 +123,19 @@ export default createReducer(initialState, {
   'SOC/filterByTop'(state, action) {
     let { stats, series, subList, chartProp } = state;
     let filterByTop = action.value;
-    let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
-    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp });
 
-    return { ...state, options, filterByTop }; // only change options !!!
+    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp }); // sort before filter !!!
+    let options = calcOptionsWithFilter({ state, stats, series, subList, filterByTop });
+
+    return { ...state, options, filterByTop, subList }; // only change options !!!
   },
 
   'SOC/setChartProp'(state, action) {
     let { stats, series, subList } = state;
     let chartProp = action.value;
+
+    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp }); // sort before filter !!!
     let options = calcOptionsWithFilter({ state, stats, series, subList, chartProp });
-    subList = sortSubsByLastValue({ state, stats, series, subList, chartProp });
 
     return { ...state, options, chartProp, subList }; // only change options !!!
   },
