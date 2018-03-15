@@ -8,24 +8,13 @@ let initialState = {
   series: [],
   subList: [],
   options,
-  filterByTop: 'top10',
+  filterByTop: "10",
   chartProp: 'comments_count', // ''
 }
 
 
 let getFilterValues = ({ subList, value }) => {
-  if (value === 'top10') {
-    return subList.slice(0, 10);
-  }
-  else if (value === 'top10-20') {
-    return subList.slice(10, 20);
-  }
-  else if (value === 'top20-30') {
-    return subList.slice(20, 29);
-  }
-  else {
-    return subList;
-  }
+  return subList.slice(value - 10, value);
 }
 
 let calcOptionsWithFilter = ({ state, series, stats, subList, filterByTop, chartProp }) => {

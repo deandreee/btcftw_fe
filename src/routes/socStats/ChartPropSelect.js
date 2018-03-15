@@ -39,6 +39,7 @@ class ChartPropSelect extends React.Component {
           <MenuItem value={"posts_count"} primaryText="Posts (Daily)" />
           <MenuItem value={"subscribers"} primaryText="Subscribers (Total)" />
           <MenuItem value={"subscribers_diff"} primaryText="Subscribers (New)" />
+          <MenuItem value={"active_user_count"} primaryText="Active Users" />
         </SelectField>
 
       </div>
