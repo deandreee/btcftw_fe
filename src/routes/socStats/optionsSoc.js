@@ -30,7 +30,10 @@ export default {
     show : true,
   },
 
-  xAxis: { ...xAxis },
+  xAxis: {
+    ...xAxis,
+    // min: new Date('2018-03-10T12:54:45.080Z').getTime(),
+  },
 
   yAxis: {
     min: 9500,

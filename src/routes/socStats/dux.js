@@ -12,6 +12,8 @@ let initialState = {
   chartProp: 'comments_count', // ''
 }
 
+let start = new Date('2018-02-25T00:00:00.000Z').getTime();
+let startTop200 = new Date('2018-03-10T12:54:45.080Z').getTime();
 
 let getFilterValues = ({ subList, value }) => {
   return subList.slice(value - 10, value);
@@ -34,8 +36,18 @@ let calcOptionsWithFilter = ({ state, series, stats, subList, filterByTop, chart
 // stats, series = already filtered
 let calcOptions = ({ state, stats, series, subList, chartProp }) => {
 
-  let min = Math.min(...stats.map(x => x && x[chartProp]));
-  let max = Math.max(...stats.map(x => x && x[chartProp]));
+  let min, max;
+
+  if (chartProp === 'subscribers_diff') {
+    let statsTop200 = stats.filter(x => x.ts >= startTop200);
+    min = Math.min(...statsTop200.map(x => x && x[chartProp]));
+    max = Math.max(...statsTop200.map(x => x && x[chartProp]));
+  }
+  else {
+    min = Math.min(...stats.map(x => x && x[chartProp]));
+    max = Math.max(...stats.map(x => x && x[chartProp]));
+  }
+
 
   let dates = stats.map(x => x && x.ts).sort((a, b) => a - b); // asc
   let firstDate =  dates[0];
@@ -48,7 +60,11 @@ let calcOptions = ({ state, stats, series, subList, chartProp }) => {
   let options = { ...state.options,
     yAxis: { ...state.options.yAxis, min, max },
     // legend, don't really need this since we have tooltip. also, bad position on mobile, so let's skip for now
-    xAxis: { ...state.options.xAxis, axisPointer: { ...state.options.xAxis.axisPointer, value: axisPointerValue }},
+    xAxis: {
+      ...state.options.xAxis,
+      axisPointer: { ...state.options.xAxis.axisPointer, value: axisPointerValue },
+      min: chartProp === 'subscribers_diff' ? startTop200  : start,
+    },
     series: series.map(x => ({
         type: 'line',
         name: x.subName,
@@ -57,6 +73,15 @@ let calcOptions = ({ state, stats, series, subList, chartProp }) => {
         snap: true,
         data: x.data.map(y => ([ new Date(y.ts), y[chartProp] ]))
     }))
+  }
+
+  // let's simplify this graph otherwise very diff for users to understand
+  if (chartProp === 'subscribers_diff') {
+    options = { ...options, xAxis: { ...options.xAxis, min: startTop200  } }
+  }
+  else {
+    let { min, ...xAxis } = options.xAxis;
+    options = { ...options, xAxis: { ...xAxis }} // remove min from props (let echarts calculate what is what), null or undef doesnt work
   }
 
   return options;
