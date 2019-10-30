@@ -9,6 +9,7 @@ See [Backend](https://github.com/deandreee/btcftw_be) for readme/description/fea
 ```bash
 
 # install and start the BackEnd first!
+# https://github.com/deandreee/btcftw_be#install
 
 # clone this repo
 git clone git@github.com:deandreee/btcftw_fe.git
@@ -18,4 +19,7 @@ cd btcftw_fe
 npm i
 # start
 npm start
+
+# open http://localhost:3000/btc
+
 ```
