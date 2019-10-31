@@ -12,7 +12,7 @@ See [Backend](https://github.com/deandreee/btcftw_be) for readme/description/fea
 # https://github.com/deandreee/btcftw_be#install
 
 # clone this repo
-git clone git@github.com:deandreee/btcftw_fe.git
+git clone https://github.com/deandreee/btcftw_fe.git
 # cd to repo
 cd btcftw_fe
 # install dependencies
